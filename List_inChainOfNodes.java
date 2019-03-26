@@ -7,21 +7,25 @@ public class List_inChainOfNodes{
 
     /**
       Construct an empty list
+      The default constructor is fine:
+      take zero arguments
+      do nothing
      */
-
 
     /**
       @return the number of elements in this list
      */
     public int size() {
-      int counter = 0;
-      Node holder = headReference;
-      while(holder != null) {
-        counter++;
-        holder = holder.getReferenceToNextNode();
-      }
-      return counter;
+        // recursive approach seems more perspicuous
+        if( headReference == null) return 0;
+        else return size( headReference);
+    }
 
+    // recursively-called helper
+    private int size( Node startingAt) {
+        Node next = startingAt.getReferenceToNextNode();
+        if( next == null) return 1;
+        else return 1+ size( next);
     }
 
 
@@ -31,15 +35,13 @@ public class List_inChainOfNodes{
            # elements [element0,element1,element2,]
       */
     public String toString() {
-        String answer = "[";
-        Node holder = headReference;
-        for (int i = 0; i <size(); i ++) {
-          answer += holder.getCargoReference() + ",";
-          holder = holder.getReferenceToNextNode();
-        }
-        answer += "]";
-        return answer;
+        String stringRep = size() + " elements [";
 
+        for( Node node = headReference
+           ; node != null
+           ; node = node.getReferenceToNextNode() )
+            stringRep += node.getCargoReference() + ",";
+        return stringRep + "]";
     }
 
 
@@ -49,8 +51,55 @@ public class List_inChainOfNodes{
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean addAsHead( Object val) {
-        Node oldHead = headReference;
-        headReference = new Node (val, oldHead);
+        headReference = new Node( val, headReference);
         return true;
+     }
+
+     public Object set( int index, Object value) {
+         int nodeIndex = 0;
+         Node currentNode;
+         Object oldCargo;
+         for (currentNode = headReference; nodeIndex < index; currentNode = currentNode.getReferenceToNextNode() )
+             nodeIndex++;
+         oldCargo = currentNode.getCargoReference();
+         currentNode.setCargoReference( value);
+         return oldCargo;
+     }
+
+     public Object get(int index){
+       int counter = 0;
+       Node answer = headReference;
+       while (counter != index){
+         counter ++;
+         answer = answer.getReferenceToNextNode();
+       }
+       return answer.getCargoReference();
+     }
+
+     public void add(int index, Object value){
+       int nodeIndex = 1;
+       if (index == 0){
+         addAsHead(value);
+       }
+       else {
+       Node nodeBefore;
+       for(nodeBefore = headReference; nodeIndex < index; nodeBefore = nodeBefore.getReferenceToNextNode()){
+        nodeIndex ++;
+      }
+      Node newNode = new Node( value, nodeBefore.getReferenceToNextNode() );
+      nodeBefore.setReferenceToNextNode(newNode);
+     }
+   }
+
+   public Object remove(int index) {
+     int nodeIndex = 0;
+
+     Node nodeBefore;
+     for(nodeBefore = headReference; nodeIndex < index; nodeBefore = nodeBefore.getReferenceToNextNode()){
+      nodeIndex ++;
+    }
+    Object oldObject = nodeBefore.getCargoReference();
+    nodeBefore.setCargoReference(null);
+    return oldObject;
      }
 }

@@ -6,8 +6,6 @@ public class UserOfList {
         List_inChainOfNodes list = new List_inChainOfNodes();
 
         System.out.println( "number of elements: " + list.size() );
-
-        // the spec requests that toString include the size
         System.out.println( "empty list: " + list
                           + System.lineSeparator());
 
@@ -25,5 +23,22 @@ public class UserOfList {
         }
         System.out.println( "populated list: " + list
                           + System.lineSeparator());
+
+        int index = 0;
+        for( int i = 0; i < elements.length; i++ ) {
+          System.out.println("Element " + index + " : "+ list.get(index));
+          index ++;
+        }
+        System.out.println(System.lineSeparator());
+
+        list.add(2,"I");
+        System.out.println("add at index 3 \n" + list);
+
+        System.out.println(System.lineSeparator());
+        System.out.println("set at index 2 " + "\nold value "+ list.set(2, "L") +  "\n" + list);
+
+      System.out.println(System.lineSeparator());
+      System.out.println("remove at index 2 " +"\nold value " + list.remove(2) +  "\n" + list);
+
     }
 }

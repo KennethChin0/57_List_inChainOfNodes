@@ -9,7 +9,7 @@ public class UserOfNode {
         System.out.println( System.lineSeparator()
                           + "Test Node");
 
-        // // minimal Node, with no next node
+        // minimal Node, with no next node
         System.out.println( "minimal Node, with no next node");
         Node noNext=  new Node( new String( "mango")); // avoid interning
         System.out.println( noNext
