@@ -31,14 +31,30 @@ public class UserOfList {
         }
         System.out.println(System.lineSeparator());
 
-        list.add(2,"I");
-        System.out.println("add at index 3 \n" + list);
+        list.add(0, "L");
+        System.out.println("add at index " + 0 + " : "+ list);
+        list.add(list.size() / 2, "L");
+        System.out.println("add at index " + list.size() / 2 + " : "+ list);
+        list.add(list.size()-1, "L");
+        System.out.println("add at index " + list.size()+ " : "+ list);
 
         System.out.println(System.lineSeparator());
-        System.out.println("set at index 2 " + "\nold value "+ list.set(2, "L") +  "\n" + list);
+        System.out.println("set at index 2 " + "\nold value "+ list.set(2, "X") +  "\n" + list);
 
-      System.out.println(System.lineSeparator());
-      System.out.println("remove at index 2 " +"\nold value " + list.remove(2) +  "\n" + list);
+        System.out.println(System.lineSeparator());
+        System.out.println("set at index " + list.size() /2 + "\nold value "+ list.set(list.size() / 2, "X") +  "\n" + list);
+        System.out.println(System.lineSeparator());
+        System.out.println("set at index 2 " + list.size() + "\nold value "+ list.set(list.size() -1, "X") +  "\n" + list);
+
+
+        System.out.println(System.lineSeparator());
+        System.out.println("remove at index 2 " + "\nold value "+ list.set(2, "X") +  "\n" + list);
+
+        System.out.println(System.lineSeparator());
+        System.out.println("remove at index " + list.size() /2 + "\nold value "+ list.remove(list.size() / 2) +  "\n" + list);
+        System.out.println(System.lineSeparator());
+        System.out.println("remove at index 2 " + list.size() + "\nold value "+ list.remove(list.size() -1) +  "\n" + list);
+
 
     }
 }
